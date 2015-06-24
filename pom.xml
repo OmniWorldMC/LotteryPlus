@@ -6,7 +6,7 @@
 
     <groupId>com.chaka51205.lotteryplus</groupId>
     <artifactId>LotteryPlus</artifactId>
-    <version>1.0.0-B10</version>
+    <version>1.0.0-B17</version>
 
     <repositories>
         <repository>

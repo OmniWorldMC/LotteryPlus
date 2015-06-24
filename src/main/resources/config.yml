@@ -2,22 +2,9 @@
 debug: false
 #Enable or disable metrics
 metrics: true
-#Change the way information is storred, I would recommend MySQL
-dataStore:
-  mysql: false
-  yaml: true
-  sqlite: false
-  json: false
-  txt: false
-#Remember to update the sql information to match the info of your database.
-sql:
-  driver: 'com.mysql.jdbc.Driver'
-  type: mysql
-  host: 127.0.0.1
-  port: 3306
-  database: lottery
-  user: 'root'
-  pass: 'root'
-  prefix: 'lp_'
+#Announce different plugin events
+announce:
+  createLottery: true
+  closeLottery: true
 #DO NOT TOUCH THIS IT WILL ERASE YOUR CONFIG
 configVersion: 0

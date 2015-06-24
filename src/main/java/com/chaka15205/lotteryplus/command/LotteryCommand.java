@@ -38,7 +38,7 @@ public class LotteryCommand implements CommandExecutor {
                 }
                 if (length == 2) {
                     Player player = (Player) source;
-                    LotteryManager.getManager().createLottery(player.getUniqueId(), args[1]);
+                    LotteryManager.getManager().createLottery(player.getName(), args[1]);
                     ChatLib.Return.createLottery(source, args[1]);
                     return true;
                 }
@@ -49,16 +49,25 @@ public class LotteryCommand implements CommandExecutor {
                 }
                 if (!(source instanceof Player)) {
                     source.sendMessage(ChatLib.Message.INVALID_SENDER);
+                    return true;
                 }
                 if (length == 2) {
                     Player player = (Player) source;
-                    String name = args[1];
+                    LotteryManager.getManager().enterLottery(player.getName(), args[1]);
+                    ChatLib.Return.enterLottery(source, args[1]);
                 }
             } else if (args[0].equalsIgnoreCase("leave")) {
                 if (!(source.hasPermission(PermLib.CMD_LOTTERY_LEAVE))) {
                     source.sendMessage(ChatLib.Message.NO_PERMS);
                     return true;
                 }
+                if (!(source instanceof Player)) {
+                    source.sendMessage(ChatLib.Message.INVALID_SENDER);
+                    return true;
+                }
+                Player player = (Player) source;
+                LotteryManager.getManager().leaveLottery(player.getName(), args[1]);
+                ChatLib.Return.leaveLottery(source, args[1]);
             } else if (args[0].equalsIgnoreCase("remove")) {
                 if (!(source.hasPermission(PermLib.CMD_LOTTERY_REMOVE))) {
                     source.sendMessage(ChatLib.Message.NO_PERMS);
@@ -69,6 +78,12 @@ public class LotteryCommand implements CommandExecutor {
                     source.sendMessage(ChatLib.Message.NO_PERMS);
                     return true;
                 }
+                if (!(source instanceof Player)) {
+                    source.sendMessage(ChatLib.Message.INVALID_SENDER);
+                    return true;
+                }
+                String winner = LotteryManager.getManager().closeLottery(args[1]);
+                ChatLib.Return.closeLottery(source, winner, args[1]);
             } else {
                 if (length > 0) {
                     source.sendMessage(ChatLib.Message.INVALID_CMD_SYNTAX);

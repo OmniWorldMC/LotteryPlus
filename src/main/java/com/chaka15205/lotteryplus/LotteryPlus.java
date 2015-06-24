@@ -10,7 +10,7 @@ public class LotteryPlus extends JavaPlugin {
 
     @Override
     public void onDisable() {
-
+        Config.saveAllFiles();
         this.getLogger().log(Level.INFO, "Disabled");
     }
 

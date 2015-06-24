@@ -30,7 +30,7 @@ public class Config {
         this.lotteryFile = new File(plugin.getDataFolder(), "lottery.yml");
 
         this.config = YamlConfiguration.loadConfiguration(configFile);
-        this.config = YamlConfiguration.loadConfiguration(configFile);
+        this.lottery = YamlConfiguration.loadConfiguration(lotteryFile);
     }
 
     public static void createAllFiles() {
