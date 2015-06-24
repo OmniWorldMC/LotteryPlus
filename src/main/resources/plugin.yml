@@ -1,0 +1,9 @@
+name: LotteryPlus
+version: 1.0.0-B7
+description: Create multiple lotteries and pick one or multiple winners.
+author: Chaka
+main: com.chaka15205.lotteryplus.LotteryPlus
+commands:
+  lottery:
+    description: The Main Command
+    usage: /<command>
