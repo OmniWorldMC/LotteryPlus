@@ -11,7 +11,8 @@ public class LotteryManager {
 
     private static LotteryManager lm;
     private static LotteryPlus plugin;
-    private Random random;
+    private Random random = new Random();
+    public static String winner = null;
 
     public static LotteryManager getManager() {
         if (lm == null) {
@@ -42,10 +43,17 @@ public class LotteryManager {
         Config.saveLotteryFile();
     }
 
-    public String closeLottery(String name) {
+    public void removeLottery(String name) {
+        Config.getLottery().set(name, null);
+        Config.saveLotteryFile();
+    }
+
+    public void closeLottery(String name) {
         List list = Config.getLottery().getList(name + ".players");
         int index = random.nextInt(list.size());
-        //TODO also remove the lottery
-        return String.valueOf(list.get(index));
+        winner = String.valueOf(list.get(index));
+        if (Config.getConfig().getBoolean("removeOnClose")) {
+            removeLottery(name);
+        }
     }
 }

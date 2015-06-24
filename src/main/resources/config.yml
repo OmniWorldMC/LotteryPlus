@@ -1,10 +1,14 @@
 #Enable or disable debug information
 debug: false
+#Automatically check for updates //IN DEV
+update: true
 #Enable or disable metrics
 metrics: true
-#Announce different plugin events
+#Announce different plugin events //IN DEV
 announce:
   createLottery: true
   closeLottery: true
+#Delete a lottery on close //IN DEV
+removeOnClose: false
 #DO NOT TOUCH THIS IT WILL ERASE YOUR CONFIG
 configVersion: 0

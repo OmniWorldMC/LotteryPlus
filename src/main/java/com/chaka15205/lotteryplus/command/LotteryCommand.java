@@ -73,6 +73,12 @@ public class LotteryCommand implements CommandExecutor {
                     source.sendMessage(ChatLib.Message.NO_PERMS);
                     return true;
                 }
+                if (!(source instanceof Player)) {
+                    source.sendMessage(ChatLib.Message.INVALID_SENDER);
+                    return true;
+                }
+                LotteryManager.getManager().removeLottery(args[1]);
+                ChatLib.Return.removeLottery(source, args[1]);
             } else if (args[0].equalsIgnoreCase("close")) {
                 if (!(source.hasPermission(PermLib.CMD_LOTTERY_CLOSE))) {
                     source.sendMessage(ChatLib.Message.NO_PERMS);
@@ -82,7 +88,8 @@ public class LotteryCommand implements CommandExecutor {
                     source.sendMessage(ChatLib.Message.INVALID_SENDER);
                     return true;
                 }
-                String winner = LotteryManager.getManager().closeLottery(args[1]);
+                LotteryManager.getManager().closeLottery(args[1]);
+                String winner = LotteryManager.winner;
                 ChatLib.Return.closeLottery(source, winner, args[1]);
             } else {
                 if (length > 0) {

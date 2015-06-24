@@ -1,5 +1,5 @@
 name: LotteryPlus
-version: 1.0.0-B17
+version: 1.0.0-B22
 description: Create multiple lotteries and pick one or multiple winners.
 author: Chaka
 main: com.chaka15205.lotteryplus.LotteryPlus
@@ -7,3 +7,20 @@ commands:
   lottery:
     description: The Main Command
     usage: /<command>
+permissions:
+  lotteryplus.*:
+    descripdion: Full access to the plugin.
+    children:
+      lotteryplus.admin: true
+      lotteryplus.player: true
+  lotteryplus.admin:
+    description: Access to admin commands.
+    children:
+      lotteryplus.cmd.lottery.create: true
+      lotteryplus.cmd.lottery.remove: true
+      lotteryplus.cmd.lottery.close: true
+  lotteryplus.player:
+    description: The basic player commands.
+    children:
+      lotteryplus.cmd.lottery.enter: true
+      lotteryplus.cmd.lottery.leave: true
