@@ -27,22 +27,7 @@ public class LotteryCommand implements CommandExecutor {
                 return true;
             }
 
-            if (args[0].equalsIgnoreCase("create")) {
-                if (!(source.hasPermission(PermLib.CMD_LOTTERY_CREATE))) {
-                    source.sendMessage(ChatLib.Message.NO_PERMS);
-                    return true;
-                }
-                if (!(source instanceof Player)) {
-                    source.sendMessage(ChatLib.Message.INVALID_SENDER);
-                    return true;
-                }
-                if (length == 2) {
-                    Player player = (Player) source;
-                    LotteryManager.getManager().createLottery(player.getName(), args[1]);
-                    ChatLib.Return.createLottery(source, args[1]);
-                    return true;
-                }
-            } else if (args[0].equalsIgnoreCase("enter")) {
+            if (args[0].equalsIgnoreCase("enter")) {
                 if (!(source.hasPermission(PermLib.CMD_LOTTERY_ENTER))) {
                     source.sendMessage(ChatLib.Message.NO_PERMS);
                     return true;
@@ -68,17 +53,6 @@ public class LotteryCommand implements CommandExecutor {
                 Player player = (Player) source;
                 LotteryManager.getManager().leaveLottery(player.getName(), args[1]);
                 ChatLib.Return.leaveLottery(source, args[1]);
-            } else if (args[0].equalsIgnoreCase("remove")) {
-                if (!(source.hasPermission(PermLib.CMD_LOTTERY_REMOVE))) {
-                    source.sendMessage(ChatLib.Message.NO_PERMS);
-                    return true;
-                }
-                if (!(source instanceof Player)) {
-                    source.sendMessage(ChatLib.Message.INVALID_SENDER);
-                    return true;
-                }
-                LotteryManager.getManager().removeLottery(args[1]);
-                ChatLib.Return.removeLottery(source, args[1]);
             } else if (args[0].equalsIgnoreCase("close")) {
                 if (!(source.hasPermission(PermLib.CMD_LOTTERY_CLOSE))) {
                     source.sendMessage(ChatLib.Message.NO_PERMS);

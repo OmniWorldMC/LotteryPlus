@@ -29,12 +29,14 @@ public class LotteryManager {
         Config.saveLotteryFile();
     }
 
+    //TODO Rename to addPlayer
     public void enterLottery(String playerName, String name) {
         List list = Config.getLottery().getList(name + ".players");
         list.add(playerName);
         Config.saveLotteryFile();
     }
 
+    //TODO Rename to removePlayer
     public void leaveLottery(String playerName, String name) {
         List list = Config.getLottery().getList(name + ".players");
         if (list.contains(playerName)) {
@@ -43,11 +45,13 @@ public class LotteryManager {
         Config.saveLotteryFile();
     }
 
+    //TODO Rename to deleteLottery
     public void removeLottery(String name) {
         Config.getLottery().set(name, null);
         Config.saveLotteryFile();
     }
 
+    //TODO Rename to drawLottery
     public void closeLottery(String name) {
         List list = Config.getLottery().getList(name + ".players");
         int index = random.nextInt(list.size());

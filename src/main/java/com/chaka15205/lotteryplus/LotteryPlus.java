@@ -1,11 +1,14 @@
 package com.chaka15205.lotteryplus;
 
+import com.chaka15205.lotteryplus.command.LotteryAdminCommand;
 import com.chaka15205.lotteryplus.command.LotteryCommand;
 import com.chaka15205.lotteryplus.config.Config;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.mcstats.Metrics;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 
 public class LotteryPlus extends JavaPlugin {
@@ -33,6 +36,11 @@ public class LotteryPlus extends JavaPlugin {
         }
 
         this.getCommand("lottery").setExecutor(new LotteryCommand(this));
+        this.getCommand("lotteryadmin").setExecutor(new LotteryAdminCommand(this));
+
+        List<String> lotteryAdminAlias = new ArrayList<String>();
+        lotteryAdminAlias.add("ladmin");
+        this.getCommand("lotteryadmin").setAliases(lotteryAdminAlias);
 
         this.getLogger().log(Level.INFO, "Enabled");
     }
