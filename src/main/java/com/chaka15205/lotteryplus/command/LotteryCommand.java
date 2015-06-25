@@ -26,7 +26,6 @@ public class LotteryCommand implements CommandExecutor {
                 source.sendMessage(ChatLib.Message.LOTTERY_INFO);
                 return true;
             }
-
             if (args[0].equalsIgnoreCase("enter")) {
                 if (!(source.hasPermission(PermLib.CMD_LOTTERY_ENTER))) {
                     source.sendMessage(ChatLib.Message.NO_PERMS);
@@ -40,6 +39,7 @@ public class LotteryCommand implements CommandExecutor {
                     Player player = (Player) source;
                     LotteryManager.getManager().enterLottery(player.getName(), args[1]);
                     ChatLib.Return.enterLottery(source, args[1]);
+                    return true;
                 }
             } else if (args[0].equalsIgnoreCase("leave")) {
                 if (!(source.hasPermission(PermLib.CMD_LOTTERY_LEAVE))) {
@@ -50,24 +50,16 @@ public class LotteryCommand implements CommandExecutor {
                     source.sendMessage(ChatLib.Message.INVALID_SENDER);
                     return true;
                 }
-                Player player = (Player) source;
-                LotteryManager.getManager().leaveLottery(player.getName(), args[1]);
-                ChatLib.Return.leaveLottery(source, args[1]);
-            } else if (args[0].equalsIgnoreCase("close")) {
-                if (!(source.hasPermission(PermLib.CMD_LOTTERY_CLOSE))) {
-                    source.sendMessage(ChatLib.Message.NO_PERMS);
+                if (length == 2) {
+                    Player player = (Player) source;
+                    LotteryManager.getManager().leaveLottery(player.getName(), args[1]);
+                    ChatLib.Return.leaveLottery(source, args[1]);
                     return true;
                 }
-                if (!(source instanceof Player)) {
-                    source.sendMessage(ChatLib.Message.INVALID_SENDER);
-                    return true;
-                }
-                LotteryManager.getManager().closeLottery(args[1]);
-                String winner = LotteryManager.winner;
-                ChatLib.Return.closeLottery(source, winner, args[1]);
             } else {
                 if (length > 0) {
                     source.sendMessage(ChatLib.Message.INVALID_CMD_SYNTAX);
+                    return true;
                 }
             }
             return true;

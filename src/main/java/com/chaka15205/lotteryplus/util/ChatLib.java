@@ -25,6 +25,12 @@ public class ChatLib {
         public static void enterLottery(CommandSender source, String lotteryName) {
             source.sendMessage(Message.PREFIX + "Successfully entered the " + ChatColor.AQUA + lotteryName + ChatColor.GREEN + " lottery.");
         }
+        public static void addPlayer(CommandSender source, String playerName, String lotteryName) {
+            source.sendMessage(Message.PREFIX + "Successfully added " + ChatColor.AQUA + playerName + ChatColor.GREEN + " to the " + ChatColor.AQUA + lotteryName + ChatColor.GREEN + " lottery.");
+        }
+        public static void removePlayer(CommandSender source, String playerName, String lotteryName) {
+            source.sendMessage(Message.PREFIX + "Successfully removed " + ChatColor.AQUA + playerName + ChatColor.GREEN + " from the " + ChatColor.AQUA + lotteryName + ChatColor.GREEN + " lottery.");
+        }
         public static void leaveLottery(CommandSender source, String lotteryName) {
             source.sendMessage(Message.PREFIX + "You have left the " + ChatColor.AQUA + lotteryName + ChatColor.GREEN + " lottery.");
         }
@@ -36,10 +42,10 @@ public class ChatLib {
             source.sendMessage(Message.PREFIX + "Successfully removed: " + ChatColor.AQUA + lotteryName);
         }
         public static void ladminHelp(CommandSender source) {
-            source.sendMessage(Message.PREFIX + "/ladmin create <name> - Creates a new lottery.");
-            source.sendMessage(Message.PREFIX + "/ladmin delete <name> - Deletes the specified lottery.");
-            source.sendMessage(Message.PREFIX + "/ladmin <close/draw> <name> - Picks a winner from the specifid lottery.");
-            source.sendMessage(Message.PREFIX + "/ladmin <add/remove> <name> <player> - Adds or removes a player to a lottery.");
+            source.sendMessage(Message.PREFIX + "/ladmin create <lottery name> - Creates a new lottery.");
+            source.sendMessage(Message.PREFIX + "/ladmin delete <lottery name> - Deletes the specified lottery.");
+            source.sendMessage(Message.PREFIX + "/ladmin <close/draw> <lottery name> - Picks a winner from the specifid lottery.");
+            source.sendMessage(Message.PREFIX + "/ladmin <add/remove> <player> <lottery name> - Adds or removes a player to a lottery.");
         }
     }
 }

@@ -55,6 +55,7 @@ public class LotteryAdminCommand implements CommandExecutor {
                     LotteryManager.getManager().closeLottery(args[1]);
                     String winner = LotteryManager.winner;
                     ChatLib.Return.closeLottery(source, winner, args[1]);
+                    return true;
                 }
             } else if (args[0].equalsIgnoreCase("add")) {
                 if (!(source.hasPermission(PermLib.CMD_LOTTERYADMIN_ADD))) {
@@ -62,12 +63,23 @@ public class LotteryAdminCommand implements CommandExecutor {
                     return true;
                 }
                 if (length == 3) {
-                    LotteryManager.getManager().leaveLottery(args[1], args[2]);
+                    LotteryManager.getManager().enterLottery(args[1], args[2]);
+                    ChatLib.Return.addPlayer(source, args[1], args[2]);
+                    return true;
                 }
             } else if (args[0].equalsIgnoreCase("remove")) {
-
+                if (!(source.hasPermission(PermLib.CMD_LOTTERYADMIN_REMOVE))) {
+                    source.sendMessage(ChatLib.Message.NO_PERMS);
+                    return true;
+                }
+                if (length == 3) {
+                    LotteryManager.getManager().leaveLottery(args[1], args[2]);
+                    ChatLib.Return.removePlayer(source, args[1], args[2]);
+                    return true;
+                }
             } else {
-
+                source.sendMessage(ChatLib.Message.INVALID_CMD_SYNTAX);
+                return true;
             }
             return true;
         }
