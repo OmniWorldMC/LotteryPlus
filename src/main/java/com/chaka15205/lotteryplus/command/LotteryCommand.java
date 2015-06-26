@@ -56,6 +56,17 @@ public class LotteryCommand implements CommandExecutor {
                     ChatLib.Return.leaveLottery(source, args[1]);
                     return true;
                 }
+            } else if (args[0].equalsIgnoreCase("list")) {
+                if (!(source.hasPermission(PermLib.CMD_LOTTERY_LIST))) {
+                    source.sendMessage(ChatLib.Message.NO_PERMS);
+                    return true;
+                }
+                if (length == 1) {
+                    ChatLib.Return.lotteryList(source);
+                    return true;
+                }
+            } else if (args[0].equalsIgnoreCase("help")) {
+                ChatLib.Return.lotteryHelp(source);
             } else {
                 if (length > 0) {
                     source.sendMessage(ChatLib.Message.INVALID_CMD_SYNTAX);

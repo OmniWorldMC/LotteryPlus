@@ -25,8 +25,19 @@ public class LotteryManager {
         List<String> list = new ArrayList<String>();
         list.add(playerName);
         Config.getLottery().set(name + ".players", list);
+        if (Config.getLottery().get("lotteries") == null) {
+            List<String> lotteries = new ArrayList<String>();
+            Config.getLottery().set("lotteries", lotteries);
+        } else {
+            List lot = Config.getLottery().getList("lotteries");
+            lot.add(name);
+        }
         Config.getLottery().options().copyDefaults(true);
         Config.saveLotteryFile();
+    }
+
+    public List<?> lotteryList() {
+        return Config.getLottery().getList("lotteries");
     }
 
     //TODO Rename to addPlayer
