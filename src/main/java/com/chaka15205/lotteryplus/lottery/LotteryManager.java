@@ -6,6 +6,7 @@ import com.chaka15205.lotteryplus.config.Config;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.UUID;
 
 public class LotteryManager {
 
@@ -24,15 +25,18 @@ public class LotteryManager {
     public void createLottery(String playerName, String name) {
         List<String> list = new ArrayList<String>();
         list.add(playerName);
+        UUID id = UUID.randomUUID();
         Config.getLottery().set(name + ".players", list);
-        if (Config.getLottery().get("lotteries") == null) {
-            List<String> lotteries = new ArrayList<String>();
+        Config.getLottery().set(name + ".id", id.toString());
+        if (Config.getLottery().getList("lotteries") == null) {
+            List lotteries = new ArrayList();
+            lotteries.add(name);
             Config.getLottery().set("lotteries", lotteries);
         } else {
-            List lot = Config.getLottery().getList("lotteries");
-            lot.add(name);
+            List lotteries = Config.getLottery().getList("lotteries");
+            lotteries.add(name);
+            Config.getLottery().set("lotteries", lotteries);
         }
-        Config.getLottery().options().copyDefaults(true);
         Config.saveLotteryFile();
     }
 
@@ -40,15 +44,13 @@ public class LotteryManager {
         return Config.getLottery().getList("lotteries");
     }
 
-    //TODO Rename to addPlayer
-    public void enterLottery(String playerName, String name) {
+    public void addPlayer(String playerName, String name) {
         List list = Config.getLottery().getList(name + ".players");
         list.add(playerName);
         Config.saveLotteryFile();
     }
 
-    //TODO Rename to removePlayer
-    public void leaveLottery(String playerName, String name) {
+    public void removePlayer(String playerName, String name) {
         List list = Config.getLottery().getList(name + ".players");
         if (list.contains(playerName)) {
             list.remove(playerName);
@@ -56,19 +58,21 @@ public class LotteryManager {
         Config.saveLotteryFile();
     }
 
-    //TODO Rename to deleteLottery
-    public void removeLottery(String name) {
+    public void deleteLottery(String name) {
         Config.getLottery().set(name, null);
         Config.saveLotteryFile();
     }
 
-    //TODO Rename to drawLottery
-    public void closeLottery(String name) {
+    public void drawLottery(String name) {
         List list = Config.getLottery().getList(name + ".players");
         int index = random.nextInt(list.size());
         winner = String.valueOf(list.get(index));
-        if (Config.getConfig().getBoolean("removeOnClose")) {
-            removeLottery(name);
+    }
+
+    public boolean isLottery(String name) {
+        if (lotteryList().contains(name)) {
+            return true;
         }
+        return false;
     }
 }

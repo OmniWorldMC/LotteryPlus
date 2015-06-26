@@ -21,9 +21,10 @@ public class LotteryAdminCommand implements CommandExecutor {
 
         int length = args.length;
 
-        if (cmd.getName().equalsIgnoreCase("lotteryadmin")) {
+        if (cmd.getName().equalsIgnoreCase("ladmin")) {
             if (length == 0) {
                 ChatLib.Return.ladminHelp(source);
+                return true;
             }
             if (args[0].equalsIgnoreCase("create")) {
                 if (!(source.hasPermission(PermLib.CMD_LOTTERYADMIN_CREATE))) {
@@ -41,8 +42,12 @@ public class LotteryAdminCommand implements CommandExecutor {
                     source.sendMessage(ChatLib.Message.NO_PERMS);
                     return true;
                 }
+                if (!(LotteryManager.getManager().isLottery(args[1]))) {
+                    ChatLib.Return.invalidLottery(source, args[1]);
+                    return true;
+                }
                 if (length == 2) {
-                    LotteryManager.getManager().removeLottery(args[1]);
+                    LotteryManager.getManager().deleteLottery(args[1]);
                     ChatLib.Return.removeLottery(source, args[1]);
                     return true;
                 }
@@ -51,10 +56,14 @@ public class LotteryAdminCommand implements CommandExecutor {
                     source.sendMessage(ChatLib.Message.NO_PERMS);
                     return true;
                 }
+                if (!(LotteryManager.getManager().isLottery(args[1]))) {
+                    ChatLib.Return.invalidLottery(source, args[1]);
+                    return true;
+                }
                 if (length == 2) {
-                    LotteryManager.getManager().closeLottery(args[1]);
+                    LotteryManager.getManager().drawLottery(args[1]);
                     String winner = LotteryManager.winner;
-                    ChatLib.Return.closeLottery(source, winner, args[1]);
+                    ChatLib.Return.drawLottery(winner, args[1]);
                     return true;
                 }
             } else if (args[0].equalsIgnoreCase("add")) {
@@ -62,8 +71,12 @@ public class LotteryAdminCommand implements CommandExecutor {
                     source.sendMessage(ChatLib.Message.NO_PERMS);
                     return true;
                 }
+                if (!(LotteryManager.getManager().isLottery(args[2]))) {
+                    ChatLib.Return.invalidLottery(source, args[2]);
+                    return true;
+                }
                 if (length == 3) {
-                    LotteryManager.getManager().enterLottery(args[1], args[2]);
+                    LotteryManager.getManager().addPlayer(args[1], args[2]);
                     ChatLib.Return.addPlayer(source, args[1], args[2]);
                     return true;
                 }
@@ -72,8 +85,12 @@ public class LotteryAdminCommand implements CommandExecutor {
                     source.sendMessage(ChatLib.Message.NO_PERMS);
                     return true;
                 }
+                if (!(LotteryManager.getManager().isLottery(args[2]))) {
+                    ChatLib.Return.invalidLottery(source, args[2]);
+                    return true;
+                }
                 if (length == 3) {
-                    LotteryManager.getManager().leaveLottery(args[1], args[2]);
+                    LotteryManager.getManager().removePlayer(args[1], args[2]);
                     ChatLib.Return.removePlayer(source, args[1], args[2]);
                     return true;
                 }

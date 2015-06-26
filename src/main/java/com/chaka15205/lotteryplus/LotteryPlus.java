@@ -36,11 +36,7 @@ public class LotteryPlus extends JavaPlugin {
         }
 
         this.getCommand("lottery").setExecutor(new LotteryCommand(this));
-        this.getCommand("lotteryadmin").setExecutor(new LotteryAdminCommand(this));
-
-        List<String> lotteryAdminAlias = new ArrayList<String>();
-        lotteryAdminAlias.add("ladmin");
-        this.getCommand("lotteryadmin").setAliases(lotteryAdminAlias);
+        this.getCommand("ladmin").setExecutor(new LotteryAdminCommand(this));
 
         this.getLogger().log(Level.INFO, "Enabled");
     }

@@ -35,9 +35,13 @@ public class LotteryCommand implements CommandExecutor {
                     source.sendMessage(ChatLib.Message.INVALID_SENDER);
                     return true;
                 }
+                if (!(LotteryManager.getManager().isLottery(args[1]))) {
+                    ChatLib.Return.invalidLottery(source, args[1]);
+                    return true;
+                }
                 if (length == 2) {
                     Player player = (Player) source;
-                    LotteryManager.getManager().enterLottery(player.getName(), args[1]);
+                    LotteryManager.getManager().addPlayer(player.getName(), args[1]);
                     ChatLib.Return.enterLottery(source, args[1]);
                     return true;
                 }
@@ -50,9 +54,13 @@ public class LotteryCommand implements CommandExecutor {
                     source.sendMessage(ChatLib.Message.INVALID_SENDER);
                     return true;
                 }
+                if (!(LotteryManager.getManager().isLottery(args[1]))) {
+                    ChatLib.Return.invalidLottery(source, args[1]);
+                    return true;
+                }
                 if (length == 2) {
                     Player player = (Player) source;
-                    LotteryManager.getManager().leaveLottery(player.getName(), args[1]);
+                    LotteryManager.getManager().removePlayer(player.getName(), args[1]);
                     ChatLib.Return.leaveLottery(source, args[1]);
                     return true;
                 }
