@@ -60,6 +60,9 @@ public class LotteryManager {
 
     public void deleteLottery(String name) {
         Config.getLottery().set(name, null);
+        List lot = Config.getLottery().getList("lotteries");
+        lot.remove(name);
+        Config.getLottery().set("lotteries", lot);
         Config.saveLotteryFile();
     }
 

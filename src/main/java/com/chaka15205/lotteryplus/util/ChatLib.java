@@ -9,7 +9,7 @@ public class ChatLib {
 
     public static class Message {
         public static final String PREFIX = ChatColor.DARK_GREEN + "[Lottery" + ChatColor.DARK_AQUA + "Plus" + ChatColor.DARK_GREEN + "] " + ChatColor.GREEN;
-        public static final String LOTTERY_INFO = PREFIX + "Version " + ChatColor.AQUA + "1.0.1-B30 " + ChatColor.GREEN + "by " + ChatColor.AQUA + "Chaka";
+        public static final String LOTTERY_INFO = PREFIX + "Version " + ChatColor.AQUA + "1.0.2-B32 " + ChatColor.GREEN + "by " + ChatColor.AQUA + "Chaka";
         public static final String INVALID_CMD_SYNTAX = PREFIX + ChatColor.RED + "Invalid Command Syntax.";
         public static final String NO_PERMS = PREFIX + ChatColor.RED + "You do not have permission to use that command.";
         public static final String INVALID_SENDER = PREFIX + ChatColor.RED + "com.chaka15205.lotteryplus.exception.InvalidSenderException: You are not a player.";

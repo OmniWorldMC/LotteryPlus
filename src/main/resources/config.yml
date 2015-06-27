@@ -1,14 +1,10 @@
 #Enable or disable debug information
 debug: false
-#Automatically check for updates //IN DEV
-update: true
 #Enable or disable metrics
 metrics: true
-#Announce different plugin events //IN DEV
-announce:
-  createLottery: true
-  closeLottery: true
-#Delete a lottery on close //IN DEV
-removeOnClose: false
+#Auto add players to a lottery
+lotteryAutoJoin:
+  use: false
+  lottery: THE_LOTTERY_YOU_WANT_TO_ADD_PLAYERS_TO
 #DO NOT TOUCH THIS IT WILL ERASE YOUR CONFIG
 configVersion: 0
