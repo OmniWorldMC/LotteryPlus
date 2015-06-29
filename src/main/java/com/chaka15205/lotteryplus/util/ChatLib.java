@@ -9,7 +9,7 @@ public class ChatLib {
 
     public static class Message {
         public static final String PREFIX = ChatColor.DARK_GREEN + "[Lottery" + ChatColor.DARK_AQUA + "Plus" + ChatColor.DARK_GREEN + "] " + ChatColor.GREEN;
-        public static final String LOTTERY_INFO = PREFIX + "Version " + ChatColor.AQUA + "1.0.2-B32 " + ChatColor.GREEN + "by " + ChatColor.AQUA + "Chaka";
+        public static final String LOTTERY_INFO = PREFIX + "Version " + ChatColor.AQUA + "1.0.3-B34 " + ChatColor.GREEN + "by " + ChatColor.AQUA + "Chaka";
         public static final String INVALID_CMD_SYNTAX = PREFIX + ChatColor.RED + "Invalid Command Syntax.";
         public static final String NO_PERMS = PREFIX + ChatColor.RED + "You do not have permission to use that command.";
         public static final String INVALID_SENDER = PREFIX + ChatColor.RED + "com.chaka15205.lotteryplus.exception.InvalidSenderException: You are not a player.";
@@ -60,6 +60,18 @@ public class ChatLib {
         }
         public static void invalidLottery(CommandSender source, String name) {
             source.sendMessage(Message.PREFIX + ChatColor.AQUA + name + ChatColor.RED + " is an invalid lottery.");
+        }
+        public static void inLotteryAlready(CommandSender source) {
+            source.sendMessage(Message.PREFIX + ChatColor.RED + "You are already in that lottery.");
+        }
+        public static void inLotteryAlreadyAdmin(String name, CommandSender source) {
+            source.sendMessage(Message.PREFIX + ChatColor.AQUA + name + ChatColor.RED + ", is already in that lottery.");
+        }
+        public static void notInLottery(CommandSender source) {
+            source.sendMessage(Message.PREFIX + ChatColor.RED + "You are not in that lottery.");
+        }
+        public static void notInLotteryAdmin(String name, CommandSender source) {
+            source.sendMessage(Message.PREFIX + ChatColor.AQUA + name +  ChatColor.RED + ", is not in that lottery.");
         }
     }
 }

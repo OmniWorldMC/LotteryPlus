@@ -40,6 +40,7 @@ public class LotteryManager {
         Config.saveLotteryFile();
     }
 
+    //TODO Handle this if there are no lotteries
     public List<?> lotteryList() {
         return Config.getLottery().getList("lotteries");
     }
@@ -75,6 +76,27 @@ public class LotteryManager {
     public boolean isLottery(String name) {
         if (lotteryList().contains(name)) {
             return true;
+        }
+        return false;
+    }
+
+    public boolean isInLottery(String name) {
+        for (Object s : lotteryList()) {
+            List t = Config.getLottery().getList(s +  ".players");
+            if (t.contains(name)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isInLottery(String lottery, String name) {
+        if (isLottery(lottery)) {
+            List list = Config.getLottery().getList(lottery + ".players");
+            if (list.contains(name)) {
+                return true;
+            }
+            return false;
         }
         return false;
     }

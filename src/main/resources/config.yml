@@ -2,7 +2,7 @@
 debug: false
 #Enable or disable metrics
 metrics: true
-#Auto add players to a lottery
+#Auto add players to a lottery //DOES NOT WORK YET
 lotteryAutoJoin:
   use: false
   lottery: THE_LOTTERY_YOU_WANT_TO_ADD_PLAYERS_TO

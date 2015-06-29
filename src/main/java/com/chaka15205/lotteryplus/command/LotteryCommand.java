@@ -39,6 +39,10 @@ public class LotteryCommand implements CommandExecutor {
                     ChatLib.Return.invalidLottery(source, args[1]);
                     return true;
                 }
+                if (LotteryManager.getManager().isInLottery(args[1], source.getName())) {
+                    ChatLib.Return.inLotteryAlready(source);
+                    return true;
+                }
                 if (length == 2) {
                     Player player = (Player) source;
                     LotteryManager.getManager().addPlayer(player.getName(), args[1]);
@@ -56,6 +60,10 @@ public class LotteryCommand implements CommandExecutor {
                 }
                 if (!(LotteryManager.getManager().isLottery(args[1]))) {
                     ChatLib.Return.invalidLottery(source, args[1]);
+                    return true;
+                }
+                if (!(LotteryManager.getManager().isInLottery(args[1], source.getName()))) {
+                    ChatLib.Return.notInLottery(source);
                     return true;
                 }
                 if (length == 2) {
